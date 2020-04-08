@@ -21,6 +21,12 @@
 			if(findItem != null){
 				console.log(findItem["value"]);
 			}
+
+			var testTarget = {type:"contract" , value:"契約"};
+			var testSource = {type:"trial" , value:"トライアル"};
+
+			var result = priorityManager.isHighPriority(testSource,testTarget);
+			console.log("結果:",result);
 		}
 	</script>
 </html>
