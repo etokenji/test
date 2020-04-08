@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title></title>
+     	<meta charset="utf-8"/>
+	</head>
+	<body>
+	</body>
+	<script src="js/priorityManager.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var priorityManager = new PriorityManager();
+
+			var testObj = [
+				{type:"claim" , value:"クレーム1"},
+				{type:"contract", value:"契約1"},
+				{type:"trial" , value:"トライアル1"}
+			];
+
+			var findItem = priorityManager.findByTopPriorityQ(testObj);
+			if(findItem != null){
+				console.log(findItem["value"]);
+			}
+		}
+	</script>
+</html>
