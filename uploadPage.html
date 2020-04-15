@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	 <style type="text/css">
+	 	.hiddenElement{
+			visibility: hidden;
+	 	}
+
+	 	.uploadInputImage{
+			cursor: pointer;
+			width: 64px;
+			height: 64px;
+	 	}
+	 </style>
+	 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous" ></script>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+	<img src="img/image001.jpg" class="contentImage"></img>
+
+	<iframe name="uploadImage1"></iframe>
+	<form class="js-uploadForm" action="upload.php" method="post" enctype="multipart/form-data" target="uploadImage1">
+	    <div class="js-uploadOuter">
+	    	<img src="img/upload.png" class="js-uploadInputImage uploadInputImage">
+	    	<input type="file" accept="image/*" name="mm_file" enctype="multipart/form-data" class="js-uploadInput hiddenElement">
+	    </div>
+	    <input type="text" name="fileName" value="image001.jpg" class="js-fileName hiddenElement">
+	</form>
+</body>
+
+<script type="text/javascript">
+	
+	$(document).on("click",".js-uploadInputImage",function(){
+		var uploadInput = $(this).parent().find(".js-uploadInput")[0];
+		uploadInput.click();
+	});
+
+	$(document).on("change",".js-uploadInput",function(){
+		
+		if( $(this).val() === "") return ;
+
+		var form = $(this).parent().parent();
+		form.submit();
+		//form.reset();
+
+		var imageName = $(this).parent().parent().find(".js-fileName")[0];
+		var image = $(this).parent().parent().parent().find(".contentImage")[0];
+		var d = new Date();
+		image.src = "img/" + imageName.value  + "?" + d.getTime();
+		// 画面遷移はさせない認識？
+		// 画像更新するためにリロードするでよい？
+	});
+</script>
+
+</html>
